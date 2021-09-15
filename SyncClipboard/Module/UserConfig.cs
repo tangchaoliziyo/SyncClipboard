@@ -24,8 +24,8 @@ namespace SyncClipboard.Module
                 public string RemoteURL = "";
                 public string UserName = "";
                 public string Password = "";
-                public bool PullSwitchOn = false;
-                public bool PushSwitchOn = false;
+                public bool PullSwitchOn = true;
+                public bool PushSwitchOn = true;
                 public bool IsNextcloud = false;
             }
 
