@@ -1,6 +1,7 @@
-using System.Threading.Tasks;
 using SyncClipboard.Module;
 using SyncClipboard.Utility;
+
+using System.Threading.Tasks;
 
 namespace SyncClipboard.Service
 {
@@ -76,7 +77,7 @@ namespace SyncClipboard.Service
                 return;
             }
 
-            lock(_uploadQueueLocker)
+            lock (_uploadQueueLocker)
             {
                 _uploadQueue++;
             }
@@ -122,6 +123,21 @@ namespace SyncClipboard.Service
         private async Task UploadClipboard()
         {
             var currentProfile = ProfileFactory.CreateFromLocal();
+            var syncType = UserConfig.Config.SyncType;
+
+            foreach (var item in syncType.GetType().GetProperties())
+            {
+                if (!(bool)item.GetValue(UserConfig.Config.SyncType))
+                {
+                    if (currentProfile.GetProfileType().ToString() == item.Name)
+                    {
+                        Log.Write("Local profile type is null, stop upload.");
+                        return;
+                    }
+                }
+
+
+            }
             if (currentProfile == null)
             {
                 Log.Write("Local profile type is null, stop upload.");
@@ -149,6 +165,7 @@ namespace SyncClipboard.Service
                     await profile.UploadProfileAsync(Global.WebDav).ConfigureAwait(true);
                     Log.Write("Upload end");
                     Global.Notifyer.SetStatusString(SERVICE_NAME, "Running.", false);
+                    Global.Notifyer.showmsg("上传成功");
                     SyncService.remoteProfilemutex.ReleaseMutex();
                     return;
                 }

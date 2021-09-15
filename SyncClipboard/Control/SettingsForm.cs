@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SyncClipboard.Module;
+
+using System;
 using System.Windows.Forms;
-using SyncClipboard.Control;
-using SyncClipboard.Module;
 
 namespace SyncClipboard
 {
@@ -31,6 +31,13 @@ namespace SyncClipboard
             this.textBox6.Text = UserConfig.Config.Program.RetryTimes.ToString();
             this.textBox7.Text = (UserConfig.Config.Program.TimeOut / 1000).ToString();
             this.textBox8.Text = (UserConfig.Config.Program.IntervalTime / 1000).ToString();
+
+            #region 同步选项
+            foreach (var item in UserConfig.Config.SyncType.GetType().GetProperties())
+            {
+                checkedListBox1.Items.Add(item.Name, (bool)item.GetValue(UserConfig.Config.SyncType));
+            }
+            #endregion
         }
 
         private void OKButtenClicked(object sender, EventArgs e)
@@ -60,6 +67,13 @@ namespace SyncClipboard
                 UserConfig.Config.Program.TimeOut = Convert.ToInt32(this.textBox7.Text) * 1000;
             if (this.textBox6.Text != "")
                 UserConfig.Config.Program.RetryTimes = Convert.ToInt32(this.textBox6.Text);
+
+            #region 同步选项
+            foreach (var item in checkedListBox1.Items)
+            {
+                UserConfig.Config.SyncType.GetType().GetProperty(item.ToString()).SetValue(UserConfig.Config.SyncType, checkedListBox1.GetItemChecked(checkedListBox1.Items.IndexOf(item)));
+            }
+            #endregion
             UserConfig.Save();
         }
     }

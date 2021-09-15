@@ -1,8 +1,9 @@
-using System.Web.Script.Serialization;
 using SyncClipboard.Utility;
-using System.IO;
-using System.Windows.Forms;
+
 using System;
+using System.IO;
+using System.Web.Script.Serialization;
+using System.Windows.Forms;
 
 namespace SyncClipboard.Module
 {
@@ -18,7 +19,19 @@ namespace SyncClipboard.Module
                 public int RetryTimes = 3;
                 public int TimeOut = 10000;
             }
+            public class CSyncType
+            {
+                public CSyncType()
+                {
+                    this.Text = true;
+                    this.File = false;
+                    this.Image = false;
+                }
+                public bool Text { get; set; }
+                public bool File { get; set; }
+                public bool Image { get; set; }
 
+            }
             public class CSyncService
             {
                 public string RemoteURL = "";
@@ -34,7 +47,7 @@ namespace SyncClipboard.Module
                 public bool switchOn = false;
                 public int Shutdowntime = 30;
             }
-
+            public CSyncType SyncType = new CSyncType();
             public CSyncService SyncService = new CSyncService();
             public CCommandService CommandService = new CCommandService();
             public CProgram Program = new CProgram();

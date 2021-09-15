@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SyncClipboard.Utility;
+
+using System;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using SyncClipboard.Utility;
 
 namespace SyncClipboard.Module
 {
