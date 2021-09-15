@@ -99,6 +99,11 @@ namespace SyncClipboard.Service
         public static async Task<Profile> CreateFromRemote(IWebDav webDav)
         {
             string httpReply = await webDav.GetTextAsync(SyncService.REMOTE_RECORD_FILE, 0, 0).ConfigureAwait(false);
+
+            if (string.IsNullOrWhiteSpace(httpReply))
+            {
+                return null;
+            }
             Log.Write("[PULL] json " + httpReply);
 
             JsonProfile jsonProfile;

@@ -126,6 +126,10 @@ namespace SyncClipboard.Service
 
         private async Task SetRemoteProfileToLocal(Profile remoteProfile)
         {
+            if (remoteProfile is null)
+            {
+                return;
+            }
             Profile localProfile = ProfileFactory.CreateFromLocal();
             if (localProfile.GetProfileType() == ProfileType.ClipboardType.Unknown)
             {

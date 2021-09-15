@@ -72,7 +72,10 @@ namespace SyncClipboard.Service
 
         private void ClipBoardChangedHandler()
         {
-            if (!UserConfig.Config.SyncService.PushSwitchOn || _isChangingLocal)
+            if (string.IsNullOrWhiteSpace(UserConfig.Config.SyncService.RemoteURL) ||
+                string.IsNullOrWhiteSpace(UserConfig.Config.SyncService.UserName) ||
+                string.IsNullOrWhiteSpace(UserConfig.Config.SyncService.Password) ||
+                !UserConfig.Config.SyncService.PushSwitchOn || _isChangingLocal)
             {
                 return;
             }
