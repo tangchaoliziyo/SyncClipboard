@@ -22,10 +22,7 @@ namespace SyncClipboard.Control
 
         private readonly Dictionary<string, string> _statusList = new Dictionary<string, string>();
 
-        public void showmsg(string msg)
-        {
-            _notifyIcon.ShowBalloonTip(1000, "SyncClipboard", msg, ToolTipIcon.Info);
-        }
+
         public Notifyer(ContextMenu contextMenu)
         {
             this._notifyIcon = new System.Windows.Forms.NotifyIcon

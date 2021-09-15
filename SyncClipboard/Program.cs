@@ -34,17 +34,17 @@ namespace SyncClipboard
             }
             else
             {
-                MessageBox.Show("已经存在一个正在运行中的实例！", SoftName);
+                MessageBox.Show("SyncClipboard已经运行！", SoftName);
             }
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            Log.Write("未知错误:" + e.Exception.Message);
+            Log.Write("程序错误:" + e.Exception.Message);
         }
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            Log.Write("未知错误:" + e.ExceptionObject.ToString());
+            Log.Write("程序错误:" + e.ExceptionObject.ToString());
         }
         private static void Application_ApplicationExit(object sender, EventArgs e)
         {

@@ -134,7 +134,7 @@ namespace SyncClipboard.Service
                 {
                     if (currentProfile.GetProfileType().ToString() == item.Name)
                     {
-                        Log.Write("Local profile type is null, stop upload.");
+                        Log.Write("同步服务器配置不正确，停止上传");
                         return;
                     }
                 }
@@ -143,13 +143,13 @@ namespace SyncClipboard.Service
             }
             if (currentProfile == null)
             {
-                Log.Write("Local profile type is null, stop upload.");
+                Log.Write("同步服务器配置不正确，停止上传");
                 return;
             }
 
             if (currentProfile == null || currentProfile.GetProfileType() == ProfileType.ClipboardType.Unknown)
             {
-                Log.Write("Local profile type is Unkown, stop upload.");
+                Log.Write("同步服务器配置不正确，停止上传");
                 return;
             }
 
@@ -168,7 +168,7 @@ namespace SyncClipboard.Service
                     await profile.UploadProfileAsync(Global.WebDav).ConfigureAwait(true);
                     Log.Write("Upload end");
                     Global.Notifyer.SetStatusString(SERVICE_NAME, "Running.", false);
-                    Global.Notifyer.showmsg("上传成功");
+                    Global.Notifyer.ToastNotify("剪切板同步成功", profile.Text);
                     SyncService.remoteProfilemutex.ReleaseMutex();
                     return;
                 }
