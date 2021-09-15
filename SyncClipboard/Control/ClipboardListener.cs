@@ -40,10 +40,10 @@ namespace SyncClipboard
             base.DefWndProc(ref m);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            RemoveClipboardFormatListener(this.Handle);
-            base.Dispose();
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    RemoveClipboardFormatListener(this.Handle);
+        //    base.Dispose();
+        //}
     }
 }

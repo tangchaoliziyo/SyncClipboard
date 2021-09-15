@@ -17,7 +17,7 @@ namespace SyncClipboard.Control
         private System.Windows.Forms.MenuItem 下载远程MenuItem;
         //private System.Windows.Forms.MenuItem 检查更新MenuItem;
         private System.Windows.Forms.MenuItem lineMenuItem;
-        private System.Windows.Forms.MenuItem nextCloudLogger;
+        //private System.Windows.Forms.MenuItem nextCloudLogger;
 
         private SettingsForm settingsForm;
         private bool isSttingsFormExist = false;
@@ -36,7 +36,7 @@ namespace SyncClipboard.Control
             this.退出MenuItem = new System.Windows.Forms.MenuItem("退出");
             //this.检查更新MenuItem = new System.Windows.Forms.MenuItem("检查更新");
             this.lineMenuItem = new System.Windows.Forms.MenuItem("-");
-            this.nextCloudLogger = new System.Windows.Forms.MenuItem("从NextCloud登录");
+            //this.nextCloudLogger = new System.Windows.Forms.MenuItem("从NextCloud登录");
 
             this.设置MenuItem.Click += this.设置MenuItem_Click;
             this.开机启动MenuItem.Click += this.开机启动MenuItem_Click;
@@ -44,12 +44,12 @@ namespace SyncClipboard.Control
             this.下载远程MenuItem.Click += this.下载远程MenuItem_Click;
             this.退出MenuItem.Click += this.退出MenuItem_Click;
             //this.检查更新MenuItem.Click += this.检查更新MenuItem_Click;
-            this.nextCloudLogger.Click += this.NextCloudLogger_Click;
+            //this.nextCloudLogger.Click += this.NextCloudLogger_Click;
 
             this.contextMenu = new ContextMenu(new MenuItem[] {
                 this.设置MenuItem,
-                this.lineMenuItem.CloneMenu(),
-                this.nextCloudLogger,
+                //this.lineMenuItem.CloneMenu(),
+                //this.nextCloudLogger,
                 this.lineMenuItem.CloneMenu(),
                 this.开机启动MenuItem,
                 this.上传本机MenuItem,
@@ -88,6 +88,7 @@ namespace SyncClipboard.Control
         {
             UserConfig.Config.SyncService.PullSwitchOn = false;
             UserConfig.Config.SyncService.PushSwitchOn = false;
+            ClipboardListener.RemoveClipboardFormatListener(this.Handle);
             Notifyer.Exit();
             Application.Exit();
         }
