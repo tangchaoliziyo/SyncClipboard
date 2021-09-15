@@ -24,7 +24,7 @@ namespace SyncClipboard.Control
 
         public void showmsg(string msg)
         {
-            _notifyIcon.ShowBalloonTip(1000, "提示", msg, ToolTipIcon.Info);
+            _notifyIcon.ShowBalloonTip(1000, "SyncClipboard", msg, ToolTipIcon.Info);
         }
         public Notifyer(ContextMenu contextMenu)
         {
