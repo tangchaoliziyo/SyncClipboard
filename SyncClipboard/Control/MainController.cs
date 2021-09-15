@@ -15,7 +15,7 @@ namespace SyncClipboard.Control
         private System.Windows.Forms.MenuItem 开机启动MenuItem;
         private System.Windows.Forms.MenuItem 上传本机MenuItem;
         private System.Windows.Forms.MenuItem 下载远程MenuItem;
-        private System.Windows.Forms.MenuItem 检查更新MenuItem;
+        //private System.Windows.Forms.MenuItem 检查更新MenuItem;
         private System.Windows.Forms.MenuItem lineMenuItem;
         private System.Windows.Forms.MenuItem nextCloudLogger;
 
@@ -34,7 +34,7 @@ namespace SyncClipboard.Control
             this.上传本机MenuItem = new System.Windows.Forms.MenuItem("上传本机");
             this.下载远程MenuItem = new System.Windows.Forms.MenuItem("下载远程");
             this.退出MenuItem = new System.Windows.Forms.MenuItem("退出");
-            this.检查更新MenuItem = new System.Windows.Forms.MenuItem("检查更新");
+            //this.检查更新MenuItem = new System.Windows.Forms.MenuItem("检查更新");
             this.lineMenuItem = new System.Windows.Forms.MenuItem("-");
             this.nextCloudLogger = new System.Windows.Forms.MenuItem("从NextCloud登录");
 
@@ -43,7 +43,7 @@ namespace SyncClipboard.Control
             this.上传本机MenuItem.Click += this.上传本机MenuItem_Click;
             this.下载远程MenuItem.Click += this.下载远程MenuItem_Click;
             this.退出MenuItem.Click += this.退出MenuItem_Click;
-            this.检查更新MenuItem.Click += this.检查更新MenuItem_Click;
+            //this.检查更新MenuItem.Click += this.检查更新MenuItem_Click;
             this.nextCloudLogger.Click += this.NextCloudLogger_Click;
 
             this.contextMenu = new ContextMenu(new MenuItem[] {
@@ -55,7 +55,7 @@ namespace SyncClipboard.Control
                 this.上传本机MenuItem,
                 this.下载远程MenuItem,
                 this.lineMenuItem.CloneMenu(),
-                this.检查更新MenuItem,
+                //this.检查更新MenuItem,
                 this.退出MenuItem
             });
 
@@ -140,10 +140,10 @@ namespace SyncClipboard.Control
             UserConfig.Save();
         }
 
-        private void 检查更新MenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateChecker updateChecker = new UpdateChecker();
-            updateChecker.Check();
-        }
+        //private void 检查更新MenuItem_Click(object sender, EventArgs e)
+        //{
+        //    UpdateChecker updateChecker = new UpdateChecker();
+        //    updateChecker.Check();
+        //}
     }
 }
